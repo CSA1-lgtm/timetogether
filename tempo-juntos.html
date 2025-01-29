@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 20%;
+            background-color: #CC0099;
+            color: #000000;
+        }
+
+    <title>Estamos juntos há...</title>
+
+	h1 {
+            font-size: 3rem;
+        }
+	p {
+            font-size: 2.5rem;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    
+    <p id="tempo"></p>
+    <h1>Da melhor escolha da minha vida. Amo você!</h1>
+    <script>
+        function calcularTempo() {
+            const dataInicio = new Date('2024-07-19T00:00:00'); // Altere para sua data real
+            const agora = new Date();
+            
+            // Diferença total em milissegundos
+            const diffTempo = agora - dataInicio;
+
+            // Converter para dias totais exatos
+            const diasTotais = Math.floor(diffTempo / (1000 * 60 * 60 * 24));
+
+            // Cálculo de anos, meses e dias reais
+            let anos = agora.getFullYear() - dataInicio.getFullYear();
+            let meses = agora.getMonth() - dataInicio.getMonth();
+            let dias = agora.getDate() - dataInicio.getDate();
+
+            // Ajustar quando o mês ainda não completou
+            if (dias < 0) {
+                meses--;
+                const ultimoDiaMesAnterior = new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
+                dias += ultimoDiaMesAnterior;
+            }
+
+            // Ajustar quando o ano ainda não completou
+            if (meses < 0) {
+                anos--;
+                meses += 12;
+            }
+
+            // Cálculo das horas, minutos e segundos corridos
+            const horas = agora.getHours();
+            const minutos = agora.getMinutes();
+            const segundos = agora.getSeconds();
+
+            // Atualizar a página com o tempo decorrido
+            document.getElementById('tempo').textContent = 
+                `${anos} anos, ${meses} meses, ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
+        }
+
+        // Atualiza o tempo a cada segundo
+        setInterval(calcularTempo, 1000);
+
+        // Chamada inicial para exibir imediatamente
+        calcularTempo();
+    </script>
+</body>
+</html>
